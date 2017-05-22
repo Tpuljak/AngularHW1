@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Angular HW 1</title>
+	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/angular-local-storage.min.js"></script>
+	<script src="scripts/app/app.js"></script>
+	<link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body ng-app="App">
+	<div class="main" ng-controller="FirstController">
+		<h1 class="title">
+			IMENIK
+		</h1>
+		<button ng-click="addNewStudent()" class="new-student-button">Dodaj učenika</button>
+		<button ng-click="confirm()" ng-show="addingStudent" class="confirm-button">Potvrdi unos</button>
+		<div class="phonebook">
+			<div class="section">
+				<h3 class="row-title">
+					IME I PREZIME
+				</h3>
+				<div class="input" ng-if="addingStudent">
+					<input ng-model="name" type="text" required />
+				</div>
+			</div>
+			<div class="section">
+				<h3 class="row-title">
+					SPOL
+				</h3>
+				<div class="input" ng-if="addingStudent">
+					<input type="radio" value="M" ng-model="gender" /><label>M</label><br />
+					<input type="radio" value="Ž" ng-model="gender" /><label>Ž</label>
+				</div>
+			</div>
+			<div class="section">
+				<h3 class="row-title">
+					DATUM UNOSA
+				</h3>
+				<div class="input" ng-if="addingStudent">
+					<input />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
