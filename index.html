@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Angular HW 1</title>
 	<script src="scripts/vendor/angular.js"></script>
-	<script src="scripts/vendor/angular-local-storage.min.js"></script>
+	<script src="scripts/vendor/angular-local-storage.js"></script>
 	<script src="scripts/app/app.js"></script>
 	<link rel="stylesheet" href="styles/main.css"/>
 </head>
@@ -29,17 +29,14 @@
 					SPOL
 				</h3>
 				<div class="input" ng-if="addingStudent">
-					<input type="radio" value="M" ng-model="gender" /><label>M</label><br />
-					<input type="radio" value="Ž" ng-model="gender" /><label>Ž</label>
+				    <input type="radio" name="gender" ng-model="radioValue.gender" value="M"/><label>M</label><br />
+					<input type="radio" name="gender" ng-model="radioValue.gender" value="Z"/><label>Ž</label>
 				</div>
 			</div>
-			<div class="section">
+			<div class="section" ng-if="!addingStudent">
 				<h3 class="row-title">
 					DATUM UNOSA
 				</h3>
-				<div class="input" ng-if="addingStudent">
-					<input />
-				</div>
 			</div>
 		</div>
 	</div>

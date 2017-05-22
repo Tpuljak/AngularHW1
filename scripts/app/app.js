@@ -1,8 +1,8 @@
-﻿var app = angular.module('App', [
-    'LocalStorageModule'
+﻿var app = angular.module("App", [
+    "LocalStorageModule"
 ]);
 
-app.run(function (localStorageService, $state) {
+app.run(function (localStorageService) {
     var students = [
         {
             name: "Toma Puljak",
@@ -10,21 +10,24 @@ app.run(function (localStorageService, $state) {
             dateOfAddition: new Date(Math.random() * new Date())
         }
     ];
-    localStorageService.set('students', angular.toJson(students));
+    localStorageService.set("students", angular.toJson(students));
 });
 
-app.controller("FirstController", function ($scope, localStorageService, $state) {
+app.controller("FirstController", function ($scope, localStorageService) {
     $scope.addingStudent = false;
     $scope.addNewStudent = function () {
         $scope.addingStudent = !$scope.addingStudent;
     };
 
     $scope.confirm = function () {
-        $state.students.Add({
-            name: element(by.model('name')),
-            gender: element(by.model('gender')),
+        /*var student = {
+            name: $scope.name,
+            gender: $scope.gender,
             dateofAddition: new Date(Math.random() * new Date())
-        });
+        }
+        localStorageService.set("students", angular.toJson(student));*/
+        var radioValue = {};
+        console.log($scope.radioValue);
         $scope.addingStudent = false;
     };
 });
