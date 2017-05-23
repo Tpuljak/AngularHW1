@@ -14,29 +14,40 @@
 			IMENIK
 		</h1>
 		<button ng-click="addNewStudent()" class="new-student-button">Dodaj učenika</button>
-		<button ng-click="confirm()" ng-show="addingStudent" class="confirm-button">Potvrdi unos</button>
+	    <label><input type="checkbox"/>Sakrij sve dječake</label>
+	    <label><input type="checkbox"/>Sakrij sve cure</label>
 		<div class="phonebook">
 			<div class="section">
 				<h3 class="row-title">
 					IME I PREZIME
 				</h3>
-				<div class="input" ng-if="addingStudent">
-					<input ng-model="name" type="text" required />
+				<div ng-repeat="student in students | orderBy: ['gender','dateOfAddition']" >
+					{{student.name}}
+				</div>
+				<div class="input" ng-show="addingStudent">
+					<input ng-model="name" type="text" />
 				</div>
 			</div>
 			<div class="section">
 				<h3 class="row-title">
 					SPOL
 				</h3>
-				<div class="input" ng-if="addingStudent">
-				    <input type="radio" name="gender" ng-model="radioValue.gender" value="M"/><label>M</label><br />
-					<input type="radio" name="gender" ng-model="radioValue.gender" value="Z"/><label>Ž</label>
-				</div>
+			    <div ng-repeat="student in students | orderBy: ['gender','dateOfAddition']">
+			        {{student.gender}}
+			    </div>
+			    <div class="input" ng-show="addingStudent">
+			        <label><input type="radio" name="radioButton" ng-model="gender" value="M" ng-checked="true"/>M</label><br />
+	                <label><input type="radio" name="radioButton" ng-model="gender" value="Ž"/>Ž</label>
+		        </div>		    
 			</div>
-			<div class="section" ng-if="!addingStudent">
+			<div class="section">
 				<h3 class="row-title">
 					DATUM UNOSA
 				</h3>
+				<div ng-repeat="student in students | orderBy: ['gender','dateOfAddition']">
+					{{student.dateOfAddition | date: "medium"}}
+				</div>
+			    <button ng-click="confirm()" ng-show="addingStudent" class="confirm-button">Potvrdi unos</button>
 			</div>
 		</div>
 	</div>

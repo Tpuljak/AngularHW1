@@ -17,17 +17,24 @@ app.controller("FirstController", function ($scope, localStorageService) {
     $scope.addingStudent = false;
     $scope.addNewStudent = function () {
         $scope.addingStudent = !$scope.addingStudent;
+        $scope.gender = "M";
     };
-
+	$scope.students = angular.fromJson(localStorageService.get("students"));
     $scope.confirm = function () {
-        /*var student = {
+        if (!$scope.name) {
+            alert("Name is required!");
+            return;
+        }
+            
+        var student = {
             name: $scope.name,
             gender: $scope.gender,
-            dateofAddition: new Date(Math.random() * new Date())
+            dateOfAddition: new Date(Math.random() * new Date())
         }
-        localStorageService.set("students", angular.toJson(student));*/
-        var radioValue = {};
-        console.log($scope.radioValue);
+
+		$scope.students.push(student);
+        localStorageService.set("students", angular.toJson($scope.students));
+        $scope.name = "";
         $scope.addingStudent = false;
     };
 });
