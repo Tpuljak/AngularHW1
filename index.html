@@ -17,8 +17,7 @@
 		<button ng-click="addNewStudent()" class="new-student-button" ng-disabled="full">Dodaj učenika</button>
 	    <input type="checkbox" ng-model="boysCheckbox" ng-click="boysChange()"/>Sakrij sve dječake
 	    <input type="checkbox" ng-model="girlsCheckbox" ng-change="girlsChange()"/>Sakrij sve cure
-	    Pretraži:
-	    <input type="text" ng-model="search" ng-change="searchStudents()"/>
+	    <span class="search">Pretraži: <input type="text" ng-model="search" ng-change="searchStudents()"/></span>
 		<div class="phonebook">
 			<div class="section">
 				<h3 class="row-title">

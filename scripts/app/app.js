@@ -8,8 +8,14 @@ app.run(function (localStorageService) {
             name: "Toma Puljak",
             gender: "M",
             dateOfAddition: new Date(Math.random() * new Date())
+        },
+        {
+            name: "Mario Čerpnja",
+            gender: "Ž",
+            dateOfAddition: new Date(Math.random() * new Date())
         }
     ];
+
     localStorageService.set("students", angular.toJson(students));
 });
 
@@ -19,8 +25,10 @@ app.controller("FirstController", function ($scope, localStorageService) {
         $scope.addingStudent = !$scope.addingStudent;
         $scope.gender = "M";
     };
+
     $scope.students = angular.fromJson(localStorageService.get("students"));
     $scope.full = false;
+
     $scope.confirm = function () {
         if (!$scope.name) {
             alert("Name is required!");
@@ -40,6 +48,7 @@ app.controller("FirstController", function ($scope, localStorageService) {
             $scope.full = true;
         }
     };
+
     $scope.studentsCopy = $scope.students;
     $scope.boysChange = function () {
         if ($scope.boysCheckbox)
@@ -54,6 +63,8 @@ app.controller("FirstController", function ($scope, localStorageService) {
             $scope.students = $scope.students.concat($scope.studentsCopy.filter((student) => student.gender == "Ž"));
     }
     $scope.searchStudents = function () {
-        $scope.students = _find($scope.studentsCopy, { name: $scope.search });
+        $scope.students = _.filter($scope.students, function(o) { return o.name.includes($scope.search) });
+        if ($scope.search == "")
+            $scope.students = $scope.studentsCopy;
     }
 });
