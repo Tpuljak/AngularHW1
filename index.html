@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <title>Angular HW 1</title>
 	<script src="scripts/vendor/angular.js"></script>
-	<script src="scripts/vendor/angular-local-storage.js"></script>
-	<script src="scripts/app/app.js"></script>
+    <script src="scripts/vendor/angular-local-storage.js"></script>
+    <script src="scripts/vendor/lodash.js"></script>
+    <script src="scripts/app/app.js"></script>
 	<link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body ng-app="App">
@@ -13,9 +14,11 @@
 		<h1 class="title">
 			IMENIK
 		</h1>
-		<button ng-click="addNewStudent()" class="new-student-button">Dodaj učenika</button>
-	    <label><input type="checkbox"/>Sakrij sve dječake</label>
-	    <label><input type="checkbox"/>Sakrij sve cure</label>
+		<button ng-click="addNewStudent()" class="new-student-button" ng-disabled="full">Dodaj učenika</button>
+	    <input type="checkbox" ng-model="boysCheckbox" ng-click="boysChange()"/>Sakrij sve dječake
+	    <input type="checkbox" ng-model="girlsCheckbox" ng-change="girlsChange()"/>Sakrij sve cure
+	    Pretraži:
+	    <input type="text" ng-model="search" ng-change="searchStudents()"/>
 		<div class="phonebook">
 			<div class="section">
 				<h3 class="row-title">
@@ -36,8 +39,8 @@
 			        {{student.gender}}
 			    </div>
 			    <div class="input" ng-show="addingStudent">
-			        <label><input type="radio" name="radioButton" ng-model="gender" value="M" ng-checked="true"/>M</label><br />
-	                <label><input type="radio" name="radioButton" ng-model="gender" value="Ž"/>Ž</label>
+			        <input type="radio" name="radioButton" ng-model="gender" value="M" ng-checked="true"/>M<br />
+	                <input type="radio" name="radioButton" ng-model="gender" value="Ž"/>Ž</>
 		        </div>		    
 			</div>
 			<div class="section">
