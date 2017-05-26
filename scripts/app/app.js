@@ -34,6 +34,10 @@ app.controller("FirstController", function ($scope, localStorageService) {
             alert("Name is required!");
             return;
         }
+	if(!scope.gender) {
+	    alert("Gender is required!");
+	    return;
+	}
         var student = {
             name: $scope.name,
             gender: $scope.gender,
